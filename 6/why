@@ -1,0 +1,36 @@
+//   // Eigen::MatrixXd D = Eigen::MatrixXd::Zero(2*(poseNums-start_frame_id), 4);     //构造D矩阵
+//    Eigen::MatrixXd D((poseNums-start_frame_id) * 2, 4);
+//    Eigen::MatrixXd P(3, 4);
+//    for (int i = start_frame_id; i < end_frame_id; ++i)
+
+//    {
+//        /* code */
+//         P.setZero();
+//         Eigen::Matrix3d Rcw = camera_pose[i].Rwc.transpose();
+//         Eigen::Vector3d tcw =  -Rcw * camera_pose[i].twc;
+//         P.block<3,3>(0,0) = Rcw;
+//         P.block<3,1>(0,3) =tcw;
+//         double u=camera_pose[i].uv[0];
+//         double v=camera_pose[i].uv[1];
+//         D.row(2*(i-start_frame_id))=u*P.row(2).transpose()-P.row(0);
+//         D.row(2*(i-start_frame_id)+1)=v * P.row(2).transpose()-P.row(1); 
+//         std::cout<<"error test";
+
+//    }
+
+//      Eigen::MatrixXd DTD = D.transpose()*D;
+//     Eigen::JacobiSVD<Eigen::MatrixXd> svd(DTD, Eigen::ComputeThinU |Eigen::ComputeThinV );  
+//     auto res_U = svd.matrixU();
+//     auto res_V = svd.matrixV();
+//     auto sigema = svd.singularValues();
+//             std::cout<<"error test2";
+//     //sigema = svd.singularValues();
+
+//     auto result = res_U.rightCols(1);
+//    P_est = result.block<3,1>(0,0)/result(3);  //除以最后一个进行归一化
+
+//     if(sigema[2]/sigema[3]>100)
+//     {
+//         std::cout<<"good result";
+//     }
+
